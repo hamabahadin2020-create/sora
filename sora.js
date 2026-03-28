@@ -3462,6 +3462,22 @@ function openProductFromHash() {
     openProductDetails(product, { preserveScroll: true });
   }
 }
+// Function to talk to the backend
+async function callBackend() {
+    try {
+        // We use 'localhost:5000' because the server is on your computer
+        const response = await fetch('http://localhost:5000/');
+        const data = await response.text();
+        
+        console.log("Message from Backend:", data);
+        alert("Success! Backend says: " + data);
+    } catch (error) {
+        console.log("Could not connect to the backend. Is it running?", error);
+    }
+}
+
+// Call the function when the page loads
+callBackend();
 
 window.addEventListener("hashchange", openProductFromHash);
 
